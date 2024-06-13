@@ -1,7 +1,14 @@
 <script setup>
+import axios from 'axios'
 import { RouterView } from 'vue-router'
-
 import NavComponent from './components/NavComponent.vue'
+
+if (window.location.origin === 'http://localhost:5173') {
+  axios.defaults.baseURL = 'http://localhost:5000/api/users'
+} else {
+  //  axios.defaults.baseURL = window.location.origin;
+  axios.defaults.baseURL = 'https://crud-app-backend-seven.vercel.app/api/users'
+}
 </script>
 
 <template>
@@ -11,11 +18,10 @@ import NavComponent from './components/NavComponent.vue'
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
 
 <style scoped>
-  .app {
+.app {
   display: block;
   width: 100%;
   margin: 0 auto;
