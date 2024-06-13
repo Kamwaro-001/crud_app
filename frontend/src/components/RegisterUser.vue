@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
   <div class="signup text-center">
     <main class="form-signin w-100 m-auto">

@@ -1,4 +1,19 @@
-<script setup></script>
+<script setup>
+// implement the handleLogout function
+import { useAuthStore } from '@/stores/auth.module'
+import { useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+const handleLogout = () => {
+  authStore.logout()
+  router.push('/login')
+}
+
+const check = authStore.$state.status.loggedIn
+console.log(check)
+</script>
 
 <template>
   <header id="nav-menu" class="fixed-top bg-light bg-opacity-75" aria-label="navigation bar">
@@ -9,7 +24,7 @@
           <ul class="menu-bar">
             <li><router-link class="nav-link" to="/">Home</router-link></li>
 
-            <li><router-link class="nav-link" to="/dashboard">Add User</router-link></li>
+            <li><router-link class="nav-link" to="/add">Add User</router-link></li>
           </ul>
         </nav>
       </div>
@@ -17,7 +32,7 @@
       <div class="nav-end">
         <!-- {#if check} -->
         <div class="right-container">
-          <button class="btn btn-success" on:click="{handleLogout}">Sign out</button>
+          <button class="btn btn-success" @click.prevent="handleLogout">Log out</button>
         </div>
         <!-- {:else} -->
         <div class="right-container">

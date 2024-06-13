@@ -1,7 +1,35 @@
+<script setup>
+import { ref, watchEffect } from 'vue'
+import router from '@/router'
+import { useAuthStore } from '@/stores/auth.module'
+import { useMessageStore } from '@/stores/message'
+
+const authStore = useAuthStore()
+
+const status = authStore.$state.status
+const msg = ref('')
+
+const user = ref({
+  email: '',
+  password: ''
+})
+
+const handleLogin = async () => {
+  await authStore.login(user.value)
+}
+
+watchEffect(() => {
+  msg.value = useMessageStore().message
+  if (status.loggedIn) {
+    router.push('/profile')
+  }
+})
+</script>
+
 <template>
   <div class="login text-center">
     <main class="form-signin w-100 m-auto">
-      <form method="POST">
+      <form @submit.prevent="handleLogin">
         <h1 class="h3 mb-3 fw-normal">Please login</h1>
 
         <div class="form-floating">
@@ -11,6 +39,7 @@
             class="form-control"
             id="floatingInput"
             placeholder="name@example.com"
+            v-model="user.email"
             required
           />
           <label for="floatingInput">Email address</label>
@@ -22,6 +51,7 @@
             class="form-control"
             id="floatingPassword"
             placeholder="Password"
+            v-model="user.password"
             required
           />
           <label for="floatingPassword">Password</label>
@@ -35,11 +65,10 @@
             Don't have an account? <router-link to="/register">Create account here</router-link>
           </p>
         </div>
-        <!-- {#if message !== ''}
-        <div class="form-group">
-          <div class="alert alert-danger" role="alert">{message}</div>
+
+        <div class="form-group" v-if="msg">
+          <div class="alert alert-danger" role="alert">{{ msg }}</div>
         </div>
-        {/if} -->
       </form>
     </main>
   </div>
