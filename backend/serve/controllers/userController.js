@@ -10,7 +10,6 @@ const generateToken = (id) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  // const { first, email, password } = req.body;
   const { first_name, last_name, age, town, gender, email, password } =
     req.body;
 
@@ -41,7 +40,6 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       _id: user.id,
-      // name: user.name,
       email: user.email,
       token: generateToken(user._id),
     });
@@ -103,7 +101,7 @@ const updateUser = asyncHandler(async (req, res) => {
 });
 
 const getLoggedInUser = asyncHandler(async (req, res) => {
-  const { _id, first_name, last_name, age, town, email } = await User.findById(
+  const { _id, first_name, last_name, age, town, gender, email } = await User.findById(
     req.user.id
   );
   res.status(200).json({
@@ -112,6 +110,7 @@ const getLoggedInUser = asyncHandler(async (req, res) => {
     last_name,
     age,
     town,
+    gender,
     email,
   });
 });

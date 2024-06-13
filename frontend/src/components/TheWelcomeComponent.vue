@@ -1,12 +1,9 @@
 <template>
   <div class="text-center m-1 p-1 bg-light text-dark rounded">
     <h1 class="text-center mt-1 p-1 w-100">Welcome</h1>
-    <h2 class="text-center m-1 font-weight-light ">User Details App</h2>
-    <router-link to="/users">
-      <button class="btn m-1 w-50">View Users</button>
-    </router-link>
-    <router-link to="/add">
-      <button class="btn m-1 w-50">Add User</button>
+    <h2 class="text-center m-1 font-weight-light ">User Details Crud App</h2>
+    <router-link to="/profile">
+      <button class="btn m-1 w-50">View Profile</button>
     </router-link>
   </div>
 </template>

@@ -18,7 +18,7 @@ export const logout = () => {
 }
 
 export const register = (user) => {
-  return axios.post(API_URL + '/register', {
+  return axios.post(API_URL + '/', {
     email: user.email,
     password: user.password
   })

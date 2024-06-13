@@ -1,23 +1,47 @@
 <script setup>
+import { ref, watchEffect } from 'vue'
+import router from '@/router'
+import { useAuthStore } from '@/stores/auth.module'
+import { useMessageStore } from '@/stores/message'
+
+const authStore = useAuthStore()
+const msg = ref('')
+
+const confirm = ref(true)
+
+const user = ref({
+  email: '',
+  password: '',
+  re_password: ''
+})
+
+const comparePasswords = () => {
+  confirm.value = user.value.password === user.value.re_password
+}
+
+const handleRegister = async () => {
+  try {
+    await authStore.register(user.value)
+    router.push('/login')
+  } catch (error) {
+    authStore.registerFailure()
+  }
+}
+
+watchEffect(() => {
+  msg.value = useMessageStore().message
+  if (authStore.$state.status.loggedIn) {
+    router.push('/profile')
+  }
+})
 </script>
 
 <template>
   <div class="signup text-center">
     <main class="form-signin w-100 m-auto">
-      <form method="POST">
+      <form @submit.prevent="handleRegister">
         <h1 class="h3 mb-3 fw-normal">Create an account</h1>
 
-        <div class="form-floating">
-          <input
-            name="username"
-            type="text"
-            class="form-control form-username"
-            id="floatingInput"
-            placeholder="username"
-            required
-          />
-          <label for="floatingInput">Username</label>
-        </div>
         <div class="form-floating">
           <input
             name="email"
@@ -25,6 +49,7 @@
             class="form-control form-email"
             id="floatingInput"
             placeholder="name@example.com"
+            v-model="user.email"
             required
           />
           <label for="floatingInput">Email address</label>
@@ -36,7 +61,8 @@
             class="form-control form-pw1"
             id="floatingPassword"
             placeholder="Password"
-            bind:value="{password}"
+            v-model="user.password"
+            @input="comparePasswords"
             required
           />
           <label for="floatingPassword">Password</label>
@@ -47,38 +73,33 @@
             name="re_password"
             type="password"
             class="form-control form-pw2"
-            id="floatingPassword"
+            id="floatingPassword2"
             placeholder="Re-enter password"
-            bind:value="{re_password}"
+            v-model="user.re_password"
+            @input="comparePasswords"
             required
           />
           <label for="floatingPassword">Re-enter password</label>
         </div>
 
-        <!-- {#if re_password !== '' && password !== re_password}
-        <div class="confirm">
+        <div class="confirm" v-if="!confirm">
           <p class="text-danger">passwords must match!</p>
         </div>
-        {/if} -->
 
-        <!-- <button
-          class="w-100 btn btn-lg btn-success"
-          type="submit"
-          disabled="{confirm(password,"
-          re_password)}
-        > -->
-        <button class="w-100 btn btn-lg btn-success" type="submit">Sign up</button>
+        <button class="w-100 btn btn-lg btn-success" type="submit" :disabled="!confirm">
+          Sign up
+        </button>
+        <!-- <button class="w-100 btn btn-lg btn-success" type="submit">Sign up</button> -->
 
         <div class="auth-extras">
           <p class="mt-3 mb-3 text-muted">
             Already have an account? <router-link to="/login">Login</router-link>
           </p>
         </div>
-        <!-- {#if message !== ''}
-        <div class="form-group">
-          <div class="alert alert-danger" role="alert">{message}</div>
+
+        <div class="form-group" v-if="msg">
+          <div class="alert alert-danger" role="alert">{{ msg }}</div>
         </div>
-        {/if} -->
       </form>
     </main>
   </div>

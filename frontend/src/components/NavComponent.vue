@@ -24,7 +24,7 @@ console.log(check)
           <ul class="menu-bar">
             <li><router-link class="nav-link" to="/">Home</router-link></li>
 
-            <li><router-link class="nav-link" to="/add">Add User</router-link></li>
+            <li><router-link class="nav-link" to="/profile">Profile</router-link></li>
           </ul>
         </nav>
       </div>

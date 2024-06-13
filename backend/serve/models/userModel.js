@@ -4,18 +4,23 @@ const userSchema = mongoose.Schema(
   {
     first_name: {
       type: String,
+      default: '',
     },
     last_name: {
       type: String,
+      default: '',
     },
     age: {
       type: Number,
+      default: '',
     },
     town: {
       type: String,
+      default: '',
     },
     gender: {
       type: String,
+      default: '',
     },
     email: {
       type: String,

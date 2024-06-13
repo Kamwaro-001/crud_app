@@ -1,15 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router'
 
-import HeaderComponent from './components/HeaderComponent.vue'
-
 import NavComponent from './components/NavComponent.vue'
 </script>
 
 <template>
   <NavComponent />
   <div class="app">
-    <HeaderComponent />
     <RouterView />
   </div>
 </template>

@@ -21,7 +21,7 @@ const handleLogin = async () => {
 watchEffect(() => {
   msg.value = useMessageStore().message
   if (status.loggedIn) {
-    router.push('/profile')
+    router.push('/')
   }
 })
 </script>
