@@ -1,18 +1,21 @@
 <script setup>
-// implement the handleLogout function
 import { useAuthStore } from '@/stores/auth.module'
+import { watchEffect, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
 const router = useRouter()
+
+const check = ref(false)
 
 const handleLogout = () => {
   authStore.logout()
   router.push('/login')
 }
 
-const check = authStore.$state.status.loggedIn
-console.log(check)
+watchEffect(() => {
+  check.value = authStore.$state.status.loggedIn
+})
 </script>
 
 <template>
@@ -30,18 +33,12 @@ console.log(check)
       </div>
 
       <div class="nav-end">
-        <!-- {#if check} -->
-        <div class="right-container">
+        <div class="right-container" v-if="check">
           <button class="btn btn-success" @click.prevent="handleLogout">Log out</button>
         </div>
-        <!-- {:else} -->
-        <div class="right-container">
+        <div class="right-container" v-else>
           <router-link class="nav-link text-success login-link" to="/login">Login</router-link>
-          <!-- <button class="btn btn-success">
-            <router-link class="nav-link" to="/register">Create an account</router-link>
-          </button> -->
         </div>
-        <!-- {/if} -->
 
         <button id="hamburger" aria-label="hamburger" aria-haspopup="true" aria-expanded="false">
           <i class="bi bi-list" aria-hidden="true" />

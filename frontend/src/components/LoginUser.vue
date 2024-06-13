@@ -61,7 +61,7 @@ watchEffect(() => {
 
         <div class="auth-extras">
           <p class="mt-3 mb-3 text-muted">
-            Trouble logging in? <router-link to="#">Reset password</router-link><br />
+            Forgot password? <router-link to="/change-password">Reset password</router-link><br />
             Don't have an account? <router-link to="/register">Create account here</router-link>
           </p>
         </div>

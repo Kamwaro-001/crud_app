@@ -47,6 +47,7 @@ export const useAuthStore = defineStore('auth', {
     logoutAction() {
       this.$state.status.loggedIn = false
       this.$state.token = null
+      useMessageStore().clearMessage()
     },
     registerSuccess() {
       this.$state.status.loggedIn = false

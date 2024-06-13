@@ -1,7 +1,9 @@
 <script setup>
 import { useMessageStore } from '@/stores/message'
 import { useProfileStore } from '@/stores/profile.module'
+import { useAuthStore } from '@/stores/auth.module';
 import { onMounted, ref, watchEffect } from 'vue'
+import router from '@/router'
 
 const msg = ref('')
 
@@ -18,6 +20,9 @@ let userProfile = ref({
 const useStore = useProfileStore()
 
 watchEffect(() => {
+  if (!useAuthStore().$state.status.loggedIn) {
+    router.push('/login')
+  }
   msg.value = useMessageStore().message
   userProfile.value = useProfileStore().userDetails
 })
