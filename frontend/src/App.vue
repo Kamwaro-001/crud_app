@@ -6,8 +6,7 @@ import NavComponent from './components/NavComponent.vue'
 if (window.location.origin === 'http://localhost:5173') {
   axios.defaults.baseURL = 'http://localhost:5000/api/users'
 } else {
-  //  axios.defaults.baseURL = window.location.origin;
-  axios.defaults.baseURL = 'https://crud-app-backend-seven.vercel.app/api/users'
+  axios.defaults.baseURL = 'https://crud-app-backend-3208128bee03.herokuapp.com/api/users'
 }
 </script>
 
