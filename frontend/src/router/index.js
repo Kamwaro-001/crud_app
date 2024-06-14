@@ -29,15 +29,25 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'user-profile',
-      component: ProfileView,
-      children: [
-        {
-          path: 'edit',
-          name: 'edit-profile',
-          component: DetailsView
-        }
-      ]
+      component: ProfileView
     },
+    {
+      path: '/edit',
+      name: 'edit-profile',
+      component: DetailsView
+    },
+    // {
+    //   path: '/profile',
+    //   name: 'user-profile',
+    //   component: ProfileView,
+    //   children: [
+    //     {
+    //       path: 'edit',
+    //       name: 'edit-profile',
+    //       component: DetailsView
+    //     }
+    //   ]
+    // },
     {
       path: '/change-password',
       name: 'change-password',
@@ -52,7 +62,7 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'error',
       component: ErrorView
-    }
+    },
   ]
 })
 
