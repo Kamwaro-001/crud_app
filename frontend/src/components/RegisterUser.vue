@@ -89,7 +89,6 @@ watchEffect(() => {
         <button class="w-100 btn btn-lg btn-success" type="submit" :disabled="!confirm">
           Sign up
         </button>
-        <!-- <button class="w-100 btn btn-lg btn-success" type="submit">Sign up</button> -->
 
         <div class="auth-extras">
           <p class="mt-3 mb-3 text-muted">

@@ -31,6 +31,9 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
     },
+    resetLink: {
+      data: String,
+    },
   },
   {
     timestamps: true,

@@ -8,6 +8,9 @@ export const useMessageStore = defineStore({
   actions: {
     setMessage(payload) {
       this.message = payload
+      setTimeout(() => {
+        this.clearMessage()
+      }, 2000)
     },
     clearMessage() {
       this.message = ''
