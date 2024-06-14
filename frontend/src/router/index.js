@@ -26,16 +26,6 @@ const router = createRouter({
       name: 'register',
       component: RegisterView
     },
-    // {
-    //   path: '/profile',
-    //   name: 'user-profile',
-    //   component: ProfileView
-    // },
-    // {
-    //   path: '/edit',
-    //   name: 'edit-profile',
-    //   component: DetailsView
-    // },
     {
       path: '/profile',
       name: 'user-profile',
