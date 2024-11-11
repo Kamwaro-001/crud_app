@@ -48,7 +48,9 @@ onMounted(() => {
             </tr>
           </tbody>
         </table>
-        <router-link to="/edit" ><button class="btn btn-success mt-3">Edit Profile</button></router-link>
+        <router-link to="/edit"
+          ><button class="btn btn-success mt-3">Edit Profile</button></router-link
+        >
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <script setup>
 import { useMessageStore } from '@/stores/message'
 import { useProfileStore } from '@/stores/profile.module'
-import { useAuthStore } from '@/stores/auth.module';
+import { useAuthStore } from '@/stores/auth.module'
 import { onMounted, ref, watchEffect } from 'vue'
 import router from '@/router'
 
@@ -104,14 +104,14 @@ const saveChanges = async () => {
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-9 text-secondary  m-auto">
-            <button type="submit" class="btn btn-success  " @click.prevent="saveChanges">
+          <div class="col-sm-9 text-secondary m-auto">
+            <button type="submit" class="btn btn-success" @click.prevent="saveChanges">
               Save Changes
             </button>
           </div>
           <div class="form-group mt-2" v-if="msg">
             <div class="alert alert-success" role="alert">
-              {{ msg }} 
+              {{ msg }}
             </div>
           </div>
         </div>
