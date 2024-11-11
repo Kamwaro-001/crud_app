@@ -129,7 +129,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
       const token = jwt.sign(
         { _id: user._id },
         process.env.RESET_PASSWORD_KEY,
-        { expiresIn: "15m" }
+        { expiresIn: "15m" },
       );
 
       let mailTransporter = nodemailer.createTransport({

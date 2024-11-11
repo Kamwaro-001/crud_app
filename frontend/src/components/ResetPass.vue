@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePasswordStore } from '@/stores/password.module'
 import { useMessageStore } from '@/stores/message'
-import router from '@/router';
+import router from '@/router'
 
 const password = ref('')
 const confirmPassword = ref('')
@@ -69,7 +69,9 @@ watch(
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-success w-100" :disabled="!passCheck">Submit</button>
+              <button type="submit" class="btn btn-success w-100" :disabled="!passCheck">
+                Submit
+              </button>
             </form>
             <div class="mt-3 bg-light rounded-2" v-if="!passCheck">
               <p class="text-danger">Passwords must match!</p>

@@ -4,23 +4,23 @@ const userSchema = mongoose.Schema(
   {
     first_name: {
       type: String,
-      default: '',
+      default: "",
     },
     last_name: {
       type: String,
-      default: '',
+      default: "",
     },
     age: {
       type: Number,
-      default: '',
+      default: "",
     },
     town: {
       type: String,
-      default: '',
+      default: "",
     },
     gender: {
       type: String,
-      default: '',
+      default: "",
     },
     email: {
       type: String,
@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("User", userSchema);
