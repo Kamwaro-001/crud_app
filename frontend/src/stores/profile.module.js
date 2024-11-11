@@ -15,9 +15,9 @@ export const useProfileStore = defineStore({
       email: ''
     }
   }),
-  getters {
+  getters: {
     getDetails: (state) => state.userDetails,
-},
+  },
   actions: {
     async fetchProfileDetails() {
       const data = await getProfile()
