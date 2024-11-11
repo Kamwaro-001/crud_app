@@ -8,14 +8,14 @@ const useStore = useProfileStore()
 const userProfile = ref({})
 
 watchEffect(() => {
-  useStore.fetchProfileDetails()
-  userProfile.value = useProfileStore().userDetails
+  userProfile.value = useStore.getDetails
 })
 
 onMounted(() => {
   if (!useAuthStore().$state.status.loggedIn) {
     router.push('/login')
-  }
+  } else {
+    useStore.fetchProfileDetails()}
 })
 </script>
 
