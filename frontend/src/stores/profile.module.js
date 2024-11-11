@@ -16,7 +16,7 @@ export const useProfileStore = defineStore({
     }
   }),
   getters: {
-    getDetails: (state) => state.userDetails,
+    getDetails: (state) => state.userDetails
   },
   actions: {
     async fetchProfileDetails() {
@@ -35,9 +35,11 @@ export const useProfileStore = defineStore({
         await editProfile(form_data)
         await this.fetchProfileDetails()
         useMessageStore().setMessage('Profile updated successfully.')
-      }catch (error){
+      } catch (error) {
         console.log(error)
-        useMessageStore().setMessage('An error occurred. A user with this email probably already exists.')
+        useMessageStore().setMessage(
+          'An error occurred. A user with this email probably already exists.'
+        )
         throw error
       }
     }
